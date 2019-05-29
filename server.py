@@ -7,13 +7,12 @@ import data,serial,subprocess
 
 
 #arduino device serial
-
 device ="/dev/ttyACM0"
 #/dev/ttyAMA0
 arduino = serial.Serial(device,9600)
 #subprocess.call("python pythonstore.py 1", shell= True)
 	
-# stark web server
+# start web server
 app = Flask(__name__,template_folder='web')
 
  
@@ -50,15 +49,6 @@ if __name__ == "__main__":
     app.run(debug=True)
  
  
-    
-##read from arduino
-
-
-##val ="ON"
-
-##insert into database
-
-#data.insert_db(val) 
 
 
 		
