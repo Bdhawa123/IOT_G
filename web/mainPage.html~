@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Assignment for IOT</title>
+  </head>
+  <style type="text/css">
+  		body{
+			max-width:500px;
+			margin:auto;  		
+  		}
+  		
+  </style>
+	
+  <body>
+    <h1>Name of the app</h1>
+    
+    <form>
+			Click to refresh the table 			
+ 			<input type="submit" value="Submit">   
+    </form> 
+       	
+    </form>
+  </body>
+  <script type="text/javascript">
+	var result="";
+	var ID = {{ID|tojson}};
+	var State = {{State|tojson}}
+	var Time = {{Time|tojson}}
+	var date = {{date|tojson}}
+	
+	console.log(ID);
+	console.log(State);
+	console.log(Time);
+	console.log(date);
+	
+	
+	
+        var myTable =    "<table style='border-collapse: collapse;'>";
+            myTable +=    "<tr>";
+            myTable +=    "<th style='width: 75px; border: 1px solid black; text-align: left; padding: 8px;'>ID</th>";
+            myTable +=    "<th style='width: 75px; border: 1px solid black; text-align: left; padding: 8px;'>State</th>";
+            myTable +=    "<th style='width: 75px; border: 1px solid black; text-align: left; padding: 8px;'>Time</th>";
+            myTable +=    "<th style='width: 75px; border: 1px solid black; text-align: left; padding: 8px;'>Date</th>";
+            myTable +=    "</tr>";
+
+        for (var i=0; i < ID.length; i++) 
+        {
+            myTable +=    "<tr><td style='width: 75px; border: 1px solid black; text-align: left; padding: 8px;'>" + ID[i] + "</td>";
+            myTable +=    "<td style='width: 75px; border: 1px solid black; text-align: left; padding: 8px;'>" + State[i] +"</td>";
+            myTable +=    "<td style='width: 75px; border: 1px solid black; text-align: left; padding: 8px;'>" + Time[i] +"</td>";
+            myTable +=    "<td style='width: 75px; border: 1px solid black; text-align: left; padding: 8px;'>" + date[i] +"</td></tr>";
+				        
+        }  
+        
+        myTable +=    "</table>";
+       
+        document.write(myTable);
+        
+	
+  </script>
+  
+
+</html>  

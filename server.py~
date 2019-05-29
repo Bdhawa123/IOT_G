@@ -1,0 +1,68 @@
+print("Hello World !!!")
+
+from flask import Flask, render_template
+import MySQLdb,json
+import mysql.connector
+import data,serial,subprocess
+
+
+#arduino device serial
+
+device ="/dev/ttyACM0"
+#/dev/ttyAMA0
+arduino = serial.Serial(device,9600)
+#subprocess.call("python pythonstore.py 1", shell= True)
+	
+# stark web server
+app = Flask(__name__,template_folder='web')
+
+ 
+@app.route("/")
+def home():
+	mydb = mysql.connector.connect(host ="localhost",user = "root",passwd="root", database="tempdb")
+	mycursor = mydb.cursor()
+						
+	#get all the rows from the table and send it to the webpage as data
+	mycursor.execute("SELECT * FROM MOTION_SENSOR")
+	
+	
+	ID=[]
+	State =[]
+	Time =[]
+	Date = []
+	records = mycursor.fetchall()
+	primary_value = 1
+	
+	
+	for x in records:
+		ID.append(str(x[0])) 
+		State.append(str(x[1])) 
+		Time.append(str(x[2]))
+		Date.append(str(x[3]))
+		
+	mycursor.close()	
+	
+	return render_template("/mainPage.html",ID=ID, State=State, Time=Time, date=Date)
+
+
+
+@app.route("/get_data")
+def salvador():
+	return render_template("/mainPage.html")
+	
+if __name__ == "__main__":
+    app.run(debug=True)
+ 
+ 
+    
+##read from arduino
+
+
+##val ="ON"
+
+##insert into database
+
+#data.insert_db(val) 
+
+
+		
