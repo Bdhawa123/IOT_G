@@ -44,33 +44,5 @@ while(1):
 			insert_db("OFF")
 
 
-
-#INSERT INTO THE DATABASE
-def insert_db(val):
-	Statement = "INSERT INTO MOTION_SENSOR(STATE,TIME,DATE) VALUES(%s,%s,%s)"
-	
-	curr_date = str(datetime.date.today()) 	#date
-	current = datetime.datetime.now()		
-	curr_time = str(current.hour)+":"+str(current.minute)		#time
-	
-	
-	values = (val,curr_time,curr_date)	
-	
-	if mydb:
-		mycursor.execute(Statement,values)
-		mydb.commit() 	
-		print(mycursor.rowcount,"records inserted")
-		
-	else:
-		print("Connection error")
-		
-
-
-
-
-
-
-
-	 
 	
 	
